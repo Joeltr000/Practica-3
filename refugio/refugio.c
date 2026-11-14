@@ -8,10 +8,23 @@ typedef struct {
     int salud;
 } Superviviente;
 
+
+typedef struct{
+  int agua;
+  int comida;
+  int medicamentos;
+  int municiones;
+ }Recursos;
+
+
+
+
+
 typedef struct {
     Superviviente *lista;
     int n;
     int capacidad;
+    Recursos recursos;
 } Refugio;
 
 void agregar_superviviente(Refugio *r) {
@@ -89,6 +102,13 @@ void listar_supervivientes(const Refugio *r) {
 }
 
 
+void mostrar_recursos(const Refugio *r) {
+    printf("\n--- RECURSOS DEL REFUGIO ---\n");
+    printf("Agua: %d\n", r->recursos.agua);
+    printf("Comida: %d\n", r->recursos.comida);
+    printf("Medicamentos: %d\n", r->recursos.medicamentos);
+    printf("Municiones: %d\n", r->recursos.municiones);
+}
 
 
 
@@ -100,6 +120,13 @@ int main(void) {
     refugio.lista = NULL;
     refugio.n = 0;
     refugio.capacidad = 0;
+    
+    refugio.recursos.agua=100;
+    refugio.recursos.comida=100;
+    refugio.recursos.medicamentos=20;
+    refugio.recursos.municiones=50;    
+
+    mostrar_recursos(&refugio);
 
     agregar_superviviente(&refugio);
     listar_supervivientes(&refugio);    
