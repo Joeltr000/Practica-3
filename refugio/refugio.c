@@ -111,6 +111,36 @@ void mostrar_recursos(const Refugio *r) {
 }
 
 
+int modificar_recurso(Refugio *r, int tipo, int cantidad) {
+    int *recurso;
+
+    if (tipo == 1) {
+        recurso = &r->recursos.agua;
+    } else if (tipo == 2) {
+        recurso = &r->recursos.comida;
+    } else if (tipo == 3) {
+        recurso = &r->recursos.medicamentos;
+    } else if (tipo == 4) {
+        recurso = &r->recursos.municiones;
+    } else {
+        return 0;
+    }
+
+    if (cantidad == 0) {
+        return 0;
+    }
+
+    if (cantidad < 0 && cantidad < -*recurso) {
+        return 0;
+    }
+
+    *recurso += cantidad;
+
+    return 1;
+}
+
+
+
 
 
 int main(void) {
@@ -120,7 +150,6 @@ int main(void) {
     refugio.lista = NULL;
     refugio.n = 0;
     refugio.capacidad = 0;
-    
     refugio.recursos.agua=100;
     refugio.recursos.comida=100;
     refugio.recursos.medicamentos=20;
