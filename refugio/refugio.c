@@ -71,6 +71,28 @@ void agregar_superviviente(Refugio *r) {
     printf("Superviviente registrado correctamente.\n");
 }
 
+void listar_supervivientes(const Refugio *r) {
+
+    if (r->n == 0) {
+        printf("No hay supervivientes registrados.\n");
+        return;
+    }
+
+    for (int i = 0; i < r->n; i++) {
+
+        printf("\nSuperviviente %d\n", i + 1);
+        printf("Nombre: %s\n", r->lista[i].nombre);
+        printf("Edad: %d\n", r->lista[i].edad);
+        printf("Habilidad: %s\n", r->lista[i].habilidad_especial);
+        printf("Salud: %d\n", r->lista[i].salud);
+    }
+}
+
+
+
+
+
+
 int main(void) {
 
     Refugio refugio;
@@ -80,6 +102,7 @@ int main(void) {
     refugio.capacidad = 0;
 
     agregar_superviviente(&refugio);
+    listar_supervivientes(&refugio);    
 
     printf("Cantidad de supervivientes: %d\n", refugio.n);
     printf("Capacidad: %d\n", refugio.capacidad);
